@@ -31,13 +31,15 @@ class DatabaseSeeder extends Seeder
             ]);
             $users[] = User::create([
                 'login' => $faker->unique()->userName,
+                'email' => $faker->unique()->email,
+                'phone' => '8 999 999 9999',
                 'password' => '123',
                 'image_id' => $image->id,
             ]);
         }
 
         $files = Storage::disk('public')->files();
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             foreach ($files as $file) {
                 $image = Image::create([
                     'path' => $file,

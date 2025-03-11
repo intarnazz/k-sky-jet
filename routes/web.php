@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Way;
 use App\Models\Service;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -62,4 +63,16 @@ Route::get('/service/{service}', function (Service $service) {
     return view('service', compact('service'));
 })->name('service');
 
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::post('/register', [UserController::class, 'register'])->name('auth.register');
+
 Route::get('/image/{image}', [ImageController::class, 'get'])->name('image');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/auth', function () {
+        return 'auth';
+    });
+});

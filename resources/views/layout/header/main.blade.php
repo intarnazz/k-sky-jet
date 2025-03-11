@@ -23,7 +23,7 @@
         <!-- Кнопка для входа или регистрации -->
         <div class="hidden md:flex space-x-4">
             <a href="" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Войти</a>
-            <a href="" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Регистрация</a>
+            <a href="{{ route('register') }}" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Регистрация</a>
         </div>
     </div>
 
@@ -35,7 +35,7 @@
             <a href="{{ route('ways') }}" class="text-lg hover:text-gray-400">Рейсы</a>
             <a href="{{ route('services') }}" class="text-lg hover:text-gray-400">Услуги</a>
             <a href="" class="text-lg hover:text-gray-400">Контакты</a>
-            <a href="" class="text-lg hover:text-gray-400">Войти</a>
+            <a href="{{ route('register') }}" class="text-lg hover:text-gray-400">Войти</a>
             <a href="" class="text-lg hover:text-gray-400">Регистрация</a>
         </div>
     </div>

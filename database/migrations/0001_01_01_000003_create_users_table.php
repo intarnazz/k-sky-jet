@@ -14,7 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(model: \App\Models\Image::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('login')->unique();
+            $table->string('email')->unique();
             $table->string('password');
+            $table->string('phone');
             $table->rememberToken();
             $table->timestamps();
         });
