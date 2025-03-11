@@ -1,0 +1,214 @@
+:root {
+  --textColor: #333;
+  --black: #000;
+  --white: #fff;
+  --mainColor: #3232FF66
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: var(--textColor);
+  background-color: #f3f3f3;
+  font-size: 16px;
+}
+
+#app {
+  min-height: 100dvh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.box {
+  background-color: #fff;
+  padding: .5rem 1rem;
+}
+
+.box-x {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.box-y {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai {
+  align-items: start;
+}
+
+.gap {
+  gap: 1rem;
+}
+
+.h2 {
+  font-size: 2rem;
+  background-color: #fff;
+  padding: .5rem 1rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.gap2 {
+  gap: 2rem;
+}
+
+.flex {
+  flex: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.a {
+  text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-vertical {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9e9e9e;
+  border-radius: 6px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  color: #fff;
+}
+
+input:-moz-autofill {
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  color: #fff;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: #000 !important;
+}
+
+input {
+  color: var(--textColor);
+  border: none;
+  background: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+  color: var(--textColor);
+  border: none;
+  user-select: none;
+}
+
+button:disabled {
+  background-color: #808080;
+}
+
+.button:disabled:hover {
+  background-color: #808080;
+}
+
+button:focus {
+  outline: none;
+}
+
+a {
+  color: var(--textColor);
+  text-decoration: none;
+  user-select: none;
+}
+
+nav {
+  user-select: none;
+}
+
+img {
+  object-fit: cover;
+}
+
+
+select {
+  cursor: pointer;
+}
+
+.button {
+  background-color: #fadb11;
+  color: #000;
+  border-radius: 100px;
+  border: none;
+  padding: .5rem 1rem;
+  transition: .1s;
+
+}
+
+.button:hover {
+  background-color: #e0c510;
+}
+
+.hover {
+  transition: .2s;
+}
+
+.hover:hover {
+  position: relative;
+  z-index: 1;
+  padding: 0 0 10px;
+  margin: -10px 0 0px;
+}
+
+.mark {
+  font-size: 14px;
+  background-color: var(--mainColor);
+  padding: 1em 2em;
+  border-radius: 100px;
+  animation: 60s infinite alternate mark-animation;
+}
+
+.user {
+  display: none;
+}
+
+.ava {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
