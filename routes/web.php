@@ -67,12 +67,19 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::post('/register', [UserController::class, 'register'])->name('auth.register');
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
 
 Route::get('/image/{image}', [ImageController::class, 'get'])->name('image');
 
+Route::post('/register', [UserController::class, 'register'])->name('auth.register');
+Route::post('/login', [UserController::class, 'login'])->name('auth.login');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/auth', function () {
-        return 'auth';
-    });
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
 });

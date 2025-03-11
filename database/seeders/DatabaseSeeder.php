@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $files = Storage::disk('public')->files();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             foreach ($files as $file) {
                 $image = Image::create([
                     'path' => $file,
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
                     'description' => $faker->text(200),
                     'price' => $faker->randomFloat(0, 2000, 20000),
                 ]);
-                for ($i = 0; $i < 4; $i++) {
+                for ($j = 0; $j < 4; $j++) {
                     Image::create([
                         'service_id' => $service->id,
                         'path' => $file,
