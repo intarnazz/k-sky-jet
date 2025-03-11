@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Booking;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Service;
@@ -24,6 +25,19 @@ class DatabaseSeeder extends Seeder
 
 
         $files = Storage::disk('public')->files('ava');
+
+        $image = Image::create([
+            'path' => $files[0],
+        ]);
+        $user = User::create([
+            'login' => 'admin',
+            'email' => 'admin.admin@gmail.com',
+            'phone' => '8 999 999 9999',
+            'password' => '123',
+            'image_id' => $image->id,
+        ]);
+
+
         $users = [];
         foreach ($files as $file) {
             $image = Image::create([
@@ -54,6 +68,13 @@ class DatabaseSeeder extends Seeder
                     'arrival_time' => $departure_time->modify('+' . rand(1, 8) . ' hours'),
                     'price' => $faker->randomFloat(0, 2000, 20000),
                     'class' => $faker->randomElement(['economy', 'business', 'first']),
+                ]);
+
+                Booking::create([
+                    'way_id' => $way->id,
+                    'user_id' => $user->id,
+                    'status' => 'status',
+                    'total_price' => $way->price,
                 ]);
 
                 Comment::create([

@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignIdFor(model: \App\Models\User::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(model: \App\Models\Way::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('status');
-            $table->string('total_price');
+            $table->integer('total_price');
             $table->timestamps();
         });
     }

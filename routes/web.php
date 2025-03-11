@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
     Route::get('/profile', function () {
-        return view('profile');
+        $bookings = auth()->user()->bookings()->get();
+        return view('profile', compact('bookings'));
     })->name('profile');
 });
