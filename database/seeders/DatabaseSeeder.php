@@ -2,9 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
+use App\Models\Image;
+use App\Models\Service;
 use App\Models\User;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Way;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +20,66 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $faker = Factory::create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+
+        $files = Storage::disk('public')->files('ava');
+        $users = [];
+        foreach ($files as $file) {
+            $image = Image::create([
+                'path' => $file,
+            ]);
+            $users[] = User::create([
+                'login' => $faker->unique()->userName,
+                'password' => '123',
+                'image_id' => $image->id,
+            ]);
+        }
+
+        $files = Storage::disk('public')->files();
+        for ($i = 0; $i < 4; $i++) {
+            foreach ($files as $file) {
+                $image = Image::create([
+                    'path' => $file,
+                ]);
+                $departure_time = $faker->dateTimeBetween('now', '+3 days');
+                $way = Way::create([
+                    'image_id' => $image->id,
+                    'route' => $faker->word,
+                    'views' => 0,
+                    'description' => $faker->text(200),
+                    'departure_time' => $departure_time,
+                    'arrival_time' => $departure_time->modify('+' . rand(1, 8) . ' hours'),
+                    'price' => $faker->randomFloat(0, 2000, 20000),
+                    'class' => $faker->randomElement(['economy', 'business', 'first']),
+                ]);
+
+                Comment::create([
+                    'way_id' => $way->id,
+                    'user_id' => $users[0]->id,
+                    'rating' => $faker->randomFloat(0, 0, 5),
+                    'comment' => 'Я рыба ёж 🐟',
+                ]);
+                Comment::create([
+                    'way_id' => $way->id,
+                    'user_id' => $users[1]->id,
+                    'rating' => $faker->randomFloat(0, 0, 5),
+                    'comment' => 'Я жопич',
+                ]);
+                $service = Service::create([
+                    'name' => $faker->unique()->word,
+                    'views' => 0,
+                    'type' => $faker->randomElement(['VIP', 'transfers', 'rentals']),
+                    'description' => $faker->text(200),
+                    'price' => $faker->randomFloat(0, 2000, 20000),
+                ]);
+                for ($i = 0; $i < 4; $i++) {
+                    Image::create([
+                        'service_id' => $service->id,
+                        'path' => $file,
+                    ]);
+                }
+            }
+        }
     }
 }

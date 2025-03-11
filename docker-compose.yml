@@ -10,7 +10,7 @@ services:
         container_name: sky-jet
         working_dir: /var/www
         volumes:
-            - ./:/var/www
+            - app-data:/var/www
             - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
             - ./storage:/var/www/storage
             - ./app:/var/www/app
