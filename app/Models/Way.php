@@ -8,6 +8,10 @@ class Way extends Model
 {
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'departure_time' => 'datetime',
+    ];
+
     public function image()
     {
         return $this->belongsTo(related: Image::class);

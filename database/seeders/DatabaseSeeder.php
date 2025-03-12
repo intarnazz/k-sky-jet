@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
                     'views' => 0,
                     'description' => $faker->text(200),
                     'departure_time' => $departure_time,
-                    'arrival_time' => $departure_time->modify('+' . rand(1, 8) . ' hours'),
+                    'arrival_time' => (clone $departure_time)->modify('+' . rand(1, 8) . ' hours'),
                     'price' => $faker->randomFloat(0, 2000, 20000),
                     'class' => $faker->randomElement(['economy', 'business', 'first']),
                 ]);
@@ -75,6 +75,8 @@ class DatabaseSeeder extends Seeder
                     'user_id' => $user->id,
                     'status' => 'status',
                     'total_price' => $way->price,
+                    'phone' => $faker->phoneNumber(),
+                    'special_requests' => 'Место у окна',
                 ]);
 
                 Comment::create([

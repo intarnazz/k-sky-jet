@@ -23,11 +23,19 @@
             <p><strong>Класс:</strong> {{ ucfirst($way->class) }}</p>
             <p class="text-xl font-semibold mt-4">Цена: {{ number_format($way->price, 0, ',', ' ') }} ₽</p>
 
+            <!-- Форма бронирования -->
             <div class="mt-6">
-                <a href=""
-                   class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-                    Забронировать рейс
-                </a>
+                <form action="{{ route('booking.add') }}" method="POST">
+                    @csrf
+                    <!-- Передаем id рейса (way_id) и цену рейса (total_price) -->
+                    <input type="hidden" name="way_id" value="{{ $way->id }}">
+                    <input type="hidden" name="total_price" value="{{ $way->price }}">
+
+                    <button type="submit"
+                            class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                        Забронировать рейс
+                    </button>
+                </form>
             </div>
         </div>
     </div>

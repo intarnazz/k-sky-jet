@@ -14,8 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(model: \App\Models\User::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(model: \App\Models\Way::class)->nullable()->constrained()->cascadeOnDelete();
-            $table->string('status');
+            $table->string('status')->default('status');
             $table->integer('total_price');
+            $table->string('name')->nullable(); // Имя пассажира
+            $table->string('phone')->nullable(); // Контактный телефон
+            $table->text('special_requests')->nullable(); // Особые пожелания
             $table->timestamps();
         });
     }

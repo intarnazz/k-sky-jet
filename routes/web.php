@@ -5,6 +5,7 @@ use App\Models\Way;
 use App\Models\Service;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -79,8 +80,14 @@ Route::post('/login', [UserController::class, 'login'])->name('auth.login');
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
+    Route::prefix('/booking')->group(function () {
+        Route::post('/', [BookingController::class, 'add'])->name('booking.add');
+        Route::patch('/{booking}', [BookingController::class, 'patch'])->name('booking.patch');
+        Route::delete('/{booking}', [BookingController::class, 'delete'])->name('booking.delete');
+    });
+
     Route::get('/profile', function () {
-        $bookings = auth()->user()->bookings()->get();
+        $bookings = auth()->user()->bookings()->with('way')->get();
         return view('profile', compact('bookings'));
     })->name('profile');
 });

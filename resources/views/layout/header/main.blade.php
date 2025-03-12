@@ -20,10 +20,21 @@
             </button>
         </div>
 
-        <!-- Кнопка для входа или регистрации -->
+        <!-- Кнопки для входа или регистрации, или ссылка на профиль -->
         <div class="hidden md:flex space-x-4">
-            <a href="{{ route('login') }}" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Войти</a>
-            <a href="{{ route('register') }}" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Регистрация</a>
+            @auth
+                <!-- Если пользователь залогинен, отображаем ссылку на профиль -->
+                <a href="{{ route('profile') }}" class="text-lg hover:text-gray-400">Профиль</a>
+                <form action="{{ route('logout') }}" method="POST" class="inline-block">
+                    @csrf
+                    <button type="submit" class="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600">Выйти</button>
+                </form>
+            @else
+                <!-- Если пользователь не залогинен, показываем кнопки Войти и Регистрация -->
+                <a href="{{ route('login') }}" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Войти</a>
+                <a href="{{ route('register') }}"
+                   class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">Регистрация</a>
+            @endauth
         </div>
     </div>
 
@@ -35,8 +46,17 @@
             <a href="{{ route('ways') }}" class="text-lg hover:text-gray-400">Рейсы</a>
             <a href="{{ route('services') }}" class="text-lg hover:text-gray-400">Услуги</a>
             <a href="" class="text-lg hover:text-gray-400">Контакты</a>
-            <a href="{{ route('login') }}" class="text-lg hover:text-gray-400">Войти</a>
-            <a href="{{ route('register') }}" class="text-lg hover:text-gray-400">Регистрация</a>
+
+            @auth
+                <a href="{{ route('profile') }}" class="text-lg hover:text-gray-400">Профиль</a>
+                <form action="{{ route('logout') }}" method="POST" class="inline-block">
+                    @csrf
+                    <button type="submit" class="text-lg hover:text-gray-400">Выйти</button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="text-lg hover:text-gray-400">Войти</a>
+                <a href="{{ route('register') }}" class="text-lg hover:text-gray-400">Регистрация</a>
+            @endauth
         </div>
     </div>
 </header>
