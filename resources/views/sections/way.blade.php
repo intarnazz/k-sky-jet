@@ -66,4 +66,34 @@
         @endforelse
     </div>
 
+    <!-- Форма для добавления нового комментария -->
+    <div class="mt-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Добавить комментарий</h2>
+        <form action="{{ route('comment.add') }}" method="POST">
+            @csrf
+            <input type="hidden" name="way_id" value="{{ $way->id }}">
+
+            <!-- Оценка -->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Оценка</label>
+                <select name="rating" class="w-full px-4 py-2 border rounded-md" required>
+                    <option value="1">1 ⭐</option>
+                    <option value="2">2 ⭐</option>
+                    <option value="3">3 ⭐</option>
+                    <option value="4">4 ⭐</option>
+                    <option value="5">5 ⭐</option>
+                </select>
+            </div>
+
+            <!-- Комментарий -->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Комментарий</label>
+                <input name="comment" class="w-full px-4 py-2 border rounded-md" required/>
+            </div>
+
+            <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600">Оставить
+                комментарий
+            </button>
+        </form>
+    </div>
 </div>

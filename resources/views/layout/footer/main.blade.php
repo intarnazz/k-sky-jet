@@ -12,10 +12,8 @@
             <div class="w-full md:w-1/3 mb-6 md:mb-0">
                 <h3 class="text-xl font-semibold mb-4">Быстрые ссылки</h3>
                 <ul>
-                    <li><a href="" class="text-gray-400 hover:text-gray-300">Рейсы</a></li>
-                    <li><a href="" class="text-gray-400 hover:text-gray-300">Услуги</a></li>
-                    <li><a href="" class="text-gray-400 hover:text-gray-300">Контакты</a></li>
-                    <li><a href="" class="text-gray-400 hover:text-gray-300">О нас</a></li>
+                    <li><a href="{{ route('ways') }}" class="text-lg hover:text-gray-400">Рейсы</a></li>
+                    <li><a href="{{ route('services') }}" class="text-lg hover:text-gray-400">Услуги</a></li>
                 </ul>
             </div>
 
@@ -30,7 +28,7 @@
 
         <!-- Нижний колонтитул -->
         <div class="mt-12 border-t pt-6 text-center">
-            <p class="text-gray-400 text-sm">© 2025 Авиакомпания. Все права защищены.</p>
+            <p class="text-gray-400 text-sm">© 2025 SkyJet. Все права защищены.</p>
         </div>
     </div>
 </footer>

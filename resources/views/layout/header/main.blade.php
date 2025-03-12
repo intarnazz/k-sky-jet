@@ -2,7 +2,7 @@
     <div class="container mx-auto flex items-center justify-between">
         <!-- Логотип -->
         <div>
-            <a href="/" class="text-3xl font-bold">Авиакомпания</a>
+            <a href="/" class="text-3xl font-bold">SkyJet</a>
         </div>
 
         <!-- Навигационное меню (для больших экранов) -->
@@ -10,7 +10,6 @@
             <a href="/" class="text-lg hover:text-gray-400">Главная</a>
             <a href="{{ route('ways') }}" class="text-lg hover:text-gray-400">Рейсы</a>
             <a href="{{ route('services') }}" class="text-lg hover:text-gray-400">Услуги</a>
-            <a href="" class="text-lg hover:text-gray-400">Контакты</a>
         </nav>
 
         <!-- Кнопки для мобильной версии -->

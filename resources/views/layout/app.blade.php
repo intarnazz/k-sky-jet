@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BuildPro</title>
+    <title>SkyJet</title>
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/normalise.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">

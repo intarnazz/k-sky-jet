@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\WayController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -62,6 +63,7 @@ Route::get('/service', function (Request $request) {
 Route::get('/service/{service}', function (Service $service) {
     $service->views++;
     $service->save();
+    $service->comments();
     return view('service', compact('service'));
 })->name('service');
 
@@ -80,6 +82,8 @@ Route::post('/login', [UserController::class, 'login'])->name('auth.login');
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+    Route::post('/comment', [CommentController::class, 'add'])->name('comment.add');
 
     Route::prefix('/booking')->group(function () {
         Route::post('/', [BookingController::class, 'add'])->name('booking.add');
