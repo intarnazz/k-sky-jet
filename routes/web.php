@@ -90,4 +90,12 @@ Route::middleware('auth')->group(function () {
         $bookings = auth()->user()->bookings()->with('way')->get();
         return view('profile', compact('bookings'));
     })->name('profile');
+
+    Route::middleware('role:admin')->group(function () {
+        Route::prefix('/admin')->group(function () {
+            Route::get('/', function () {
+                return 'admin';
+            });
+        });
+    });
 });

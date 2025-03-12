@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignIdFor(model: \App\Models\Image::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('login')->unique();
             $table->string('email')->unique();
+            $table->string('role')->default('user');
             $table->string('password');
             $table->string('phone');
             $table->rememberToken();

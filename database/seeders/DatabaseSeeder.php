@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'login' => 'admin',
             'email' => 'admin.admin@gmail.com',
             'phone' => '8 999 999 9999',
+            'role' => 'admin',
             'password' => '123',
             'image_id' => $image->id,
         ]);
