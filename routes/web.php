@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\WayController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -93,6 +94,12 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::prefix('/admin')->group(function () {
+
+            Route::prefix('/way')->group(function () {
+                Route::post('/', [WayController::class, 'add'])->name('admin.way.add');
+                Route::patch('/{way}', [WayController::class, 'patch'])->name('admin.way.patch');
+                Route::delete('/{way}', [WayController::class, 'delete'])->name('admin.way.delete');
+            });
             Route::get('/bookings', function () {
                 $ways = Way::withCount('bookings')
                     ->withAvg('bookings', 'total_price')

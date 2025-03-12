@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(model: \App\Models\Image::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('route');
-            $table->integer('views');
+            $table->integer('views')->default(0);
             $table->string('description');
             $table->dateTime('departure_time');
             $table->dateTime('arrival_time');

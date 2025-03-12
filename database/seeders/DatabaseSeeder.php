@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
                 $departure_time = $faker->dateTimeBetween('now', '+3 days');
                 $way = Way::create([
                     'image_id' => $image->id,
-                    'route' => $faker->word,
+                    'route' => $faker->city() . '-' . $faker->city(),
                     'views' => 0,
                     'description' => $faker->text(200),
                     'departure_time' => $departure_time,
