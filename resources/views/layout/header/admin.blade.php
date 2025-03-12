@@ -5,6 +5,7 @@
             <!-- Проверка на права администратора -->
             <a href="{{ route('admin.bookings') }}" class="text-lg hover:text-gray-400">Рейс/бронь</a>
             <a href="{{ route('admin.users') }}" class="text-lg hover:text-gray-400">Пользователи</a>
+            <a href="{{ route('admin.services') }}" class="text-lg hover:text-gray-400">Услуги</a>
         </nav>
     </div>
 </header>

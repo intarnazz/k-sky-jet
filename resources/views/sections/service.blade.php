@@ -7,14 +7,11 @@
     @include('components.button.back')
 
     <div class="flex flex-col md:flex-row">
-        <!-- Галерея изображений -->
         <div class="md:w-1/2 mb-6 md:mb-0">
-            <div class="grid grid-cols-2 gap-4">
-                @foreach($service->images as $image)
-                    <img src="{{ route('image', ['image' => $image->id]) }}" alt="Изображение услуги"
-                         class="w-full h-32 object-cover rounded-md">
-                @endforeach
-            </div>
+            @if($service->image_id)
+                <img src="{{ route('image', ['image' => $service->image_id]) }}" alt="Изображение рейса"
+                     class="w-full h-64 object-cover rounded-md">
+            @endif
         </div>
 
         <div class="md:w-1/2 md:pl-8">

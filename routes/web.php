@@ -8,6 +8,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\WayController;
+use App\Http\Controllers\ServicesController;
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
@@ -52,7 +53,6 @@ Route::get('/service', function (Request $request) {
         $query->where('type', '=', $request->type);
     }
     $services = $query
-        ->with('images')
         ->orderBy('views', 'desc')
         ->paginate(8)
         ->appends($request->except('page'));
@@ -62,7 +62,6 @@ Route::get('/service', function (Request $request) {
 Route::get('/service/{service}', function (Service $service) {
     $service->views++;
     $service->save();
-    $service->images();
     return view('service', compact('service'));
 })->name('service');
 
@@ -95,6 +94,17 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::prefix('/admin')->group(function () {
+
+            Route::get('/services', function () {
+                $services = Service::all();
+                return view('admin.services', compact('services'));
+            })->name('admin.services');
+
+            Route::prefix('/service')->group(function () {
+                Route::post('/', [ServicesController::class, 'add'])->name('admin.service.add');
+                Route::patch('/{service}', [ServicesController::class, 'patch'])->name('admin.service.patch');
+                Route::delete('/{service}', [ServicesController::class, 'delete'])->name('admin.service.delete');
+            });
 
             Route::get('/users', function () {
                 $users = User::all();

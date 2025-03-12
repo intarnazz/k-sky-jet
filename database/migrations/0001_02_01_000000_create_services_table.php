@@ -12,11 +12,12 @@ return new class extends Migration {
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(model: \App\Models\Image::class)->nullable()->constrained()->cascadeOnDelete();
             $table->string('name')->unique();
-            $table->integer('views');
+            $table->integer('views')->default(0);
             $table->string('description');
             $table->integer('price');
-            $table->string('type');
+            $table->enum('type', ['VIP', 'transfers', 'rentals']);
             $table->timestamps();
         });
     }

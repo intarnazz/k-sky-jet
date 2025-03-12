@@ -92,19 +92,14 @@ class DatabaseSeeder extends Seeder
                     'rating' => $faker->randomFloat(0, 0, 5),
                     'comment' => 'Я жопич',
                 ]);
-                $service = Service::create([
+                Service::create([
+                    'image_id' => $image->id,
                     'name' => $faker->unique()->word,
                     'views' => 0,
                     'type' => $faker->randomElement(['VIP', 'transfers', 'rentals']),
                     'description' => $faker->text(200),
                     'price' => $faker->randomFloat(0, 2000, 20000),
                 ]);
-                for ($j = 0; $j < 4; $j++) {
-                    Image::create([
-                        'service_id' => $service->id,
-                        'path' => $file,
-                    ]);
-                }
             }
         }
     }
