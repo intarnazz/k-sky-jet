@@ -3,9 +3,16 @@
         <h2 class="text-2xl font-semibold text-gray-800">Статистика по бронированиям</h2>
 
         @php
-            $activeBookingsCount = $bookings->where('status', 'active')->count();
-            $averagePrice = $bookings->avg('total_price');
+            // Проверяем, существует ли переменная $bookings и не пуста ли она
+            if(isset($bookings) && $bookings->isNotEmpty()) {
+                $activeBookingsCount = $bookings->where('status', 'status')->count();
+                $averagePrice = $bookings->avg('total_price');
+            } else {
+                $activeBookingsCount = 0;
+                $averagePrice = 0;
+            }
         @endphp
+
 
         <p><strong>Количество активных броней:</strong> {{ $activeBookingsCount }}</p>
         <p><strong>Средний чек:</strong> {{ number_format($averagePrice, 2, ',', ' ') }} ₽</p>

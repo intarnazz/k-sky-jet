@@ -21,4 +21,9 @@ class Way extends Model
     {
         return $this->hasMany(related: Comment::class);
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(related: Booking::class);
+    }
 }

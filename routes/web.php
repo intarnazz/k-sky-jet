@@ -93,9 +93,23 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::prefix('/admin')->group(function () {
-            Route::get('/', function () {
-                return 'admin';
-            });
+            Route::get('/bookings', function () {
+                $ways = Way::withCount('bookings')
+                    ->withAvg('bookings', 'total_price')
+                    ->orderByDesc('bookings_count')
+                    ->get();
+
+                $activeBookingsCount = $ways->flatMap->bookings->where('status', 'status')->count();
+                $averagePrice = $ways->flatMap->bookings->avg('total_price');
+                $maxBookingsCount = $ways->max('bookings_count');
+
+                return view('admin.bookings', compact(
+                    'ways',
+                    'activeBookingsCount',
+                    'averagePrice',
+                    'maxBookingsCount',
+                ));
+            })->name('admin.bookings');
         });
     });
 });

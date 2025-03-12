@@ -61,6 +61,12 @@
     </div>
 </header>
 
+@auth
+    @if(auth()->user()->role === 'admin')
+        @include('layout.header.admin')
+    @endif
+@endauth
+
 <script>
     // JavaScript для открытия и закрытия мобильного меню
     const burgerMenu = document.getElementById('burger-menu');
