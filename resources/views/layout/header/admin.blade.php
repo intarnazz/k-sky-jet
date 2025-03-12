@@ -3,7 +3,8 @@
         <!-- Навигационное меню (для больших экранов) -->
         <nav class="hidden md:flex space-x-6">
             <!-- Проверка на права администратора -->
-            <a href="{{ route('admin.bookings') }}" class="text-lg hover:text-gray-400">Админ-панель</a>
+            <a href="{{ route('admin.bookings') }}" class="text-lg hover:text-gray-400">Рейс/бронь</a>
+            <a href="{{ route('admin.users') }}" class="text-lg hover:text-gray-400">Пользователи</a>
         </nav>
     </div>
 </header>

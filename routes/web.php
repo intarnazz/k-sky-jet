@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Way;
 use App\Models\Service;
+use App\Models\User;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
@@ -94,6 +95,15 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::prefix('/admin')->group(function () {
+
+            Route::get('/users', function () {
+                $users = User::all();
+                return view('admin.users', compact('users'));
+            })->name('admin.users');
+
+            Route::prefix('/user')->group(function () {
+                Route::delete('/{user}', [UserController::class, 'delete'])->name('admin.user.delete');
+            });
 
             Route::prefix('/way')->group(function () {
                 Route::post('/', [WayController::class, 'add'])->name('admin.way.add');

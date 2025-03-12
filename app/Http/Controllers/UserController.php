@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\SuccessResponse;
 use App\Models\User;
+use App\Models\Way;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -36,5 +37,11 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('index');
+    }
+
+    public function delete(User $user)
+    {
+        $user->delete();
+        return redirect()->back();
     }
 }
